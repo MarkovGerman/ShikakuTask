@@ -13,8 +13,6 @@ class Solver:
     def solve(puzzle: Shikaku):
         result = []
         puzzle.all_numbers.sort(key=lambda x: x.number, reverse=True)
-        if not Solver.check_possible_solve(puzzle):
-            raise ValueError("Неправильно введена головоломка")
         queue: [Shikaku] = [puzzle]
         while queue:
             task = queue.pop(0)
@@ -53,7 +51,9 @@ class Solver:
         return sum([e.number for e in puzzle.all_numbers]) == puzzle.size * puzzle.size
 
     @staticmethod
-    def return_all_answer(answers:[Shikaku]):
+    def return_all_answer(task:Shikaku, answers:[Shikaku]):
+        if not Solver.check_possible_solve(task):
+            return "Ошибка: сумма чисел больше площади сетки"
         result = ""
         if len(answers) == 0:
             result = "Решение отсутствует"

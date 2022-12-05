@@ -44,11 +44,21 @@ class App:
         result = str(self.size) + "\n"
         for i in range(self.size):
             for j in range(self.size):
-                result += f"{self.cells_entry[j][i].get()} "
+                value = self.cells_entry[j][i].get()
+                if len(value) == 0:
+                    value = "0"
+                result += f"{value} "
             result += "\n"
-        s = Solver.solve(Parser().parse_puzzle(result))
-        self.print_result(s)
-        print(Solver.return_all_answer(s))
+        try:
+            shikaku = Parser().parse_puzzle(result)
+            s = Solver.solve(shikaku)
+            self.print_result(s)
+            print(Solver.return_all_answer(shikaku, s))
+        except ValueError:
+            print("Неправильно введена строка")
+            label = tk.Label(self.root, text="Неправильно введена строка")
+            label.grid(row=self.size + 4, column=0)
+            self.buttons.append(label)
 
     def print_result(self, res):
         Colors = ['green', 'red', 'chartreuse2', 'cyan', 'cyan4', 'DarkGray', 'DarkOliveGreen1', 'IndianRed', 'indigo']
@@ -57,7 +67,7 @@ class App:
                 for j in range(self.size):
                     cell = res[k].cells[i][j]
                     b = tk.Button(self.root, text=str(cell.number), bg=Colors[cell.color_tkinter])
-                    b.grid(row=self.size + i, column=self.size + j + 2)
+                    b.grid(row=(k+1) * self.size + i, column=(k+1)*self.size + j + 2)
                     self.buttons.append(b)
 
 
