@@ -8,11 +8,8 @@ def main():
     init()
     with open("Shikakus/shikaku10.txt") as f:
         shikaku = Parser().parse_puzzle(f.read())
-        result = Solver.solve(shikaku)
-        if len(result) == 0:
-            print("Решение отсутствует")
-        for task in result:
-            print(task)
+        result = Solver.return_all_answer(Solver.solve(shikaku))
+        print(result)
 
 
 if __name__ == '__main__':

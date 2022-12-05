@@ -78,6 +78,7 @@ class Shikaku:
         for rect in self.rectangles:
             for i in range(rect.lower_left.x, rect.upper_right.x + 1):
                 for j in range(rect.lower_left.y, rect.upper_right.y + 1):
+                    self.cells[i][j].color_tkinter = index
                     self.cells[i][j].color = Colors[index % len(Colors)]
                     self.cells[i][j].number = rect.number
             index += 1

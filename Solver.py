@@ -51,3 +51,13 @@ class Solver:
     @staticmethod
     def check_possible_solve(puzzle: Shikaku):
         return sum([e.number for e in puzzle.all_numbers]) == puzzle.size * puzzle.size
+
+    @staticmethod
+    def return_all_answer(answers:[Shikaku]):
+        result = ""
+        if len(answers) == 0:
+            result = "Решение отсутствует"
+        for task in answers:
+            result += f'{task}\n'
+        return result
+
