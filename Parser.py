@@ -15,7 +15,8 @@ class Parser:
         self.puzzle = Shikaku(self.size)
         for x in range(1, len(rows)):
             elements = rows[x].split()
-            if len(elements) != self.size:
+            if len(elements) != self.size and x <= self.size:
+                print(str(x-1))
                 raise ValueError(f"Неправильно введена строка {str(x-1)}")
             for y in range(len(elements)):
                 cell = elements[y]
