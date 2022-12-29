@@ -66,7 +66,7 @@ class App:
             for i in range(self.size):
                 for j in range(self.size):
                     cell = res[k].cells[i][j]
-                    b = tk.Button(self.root, text=str(cell.number), bg=Colors[cell.color_tkinter % len(Colors)])
+                    b = tk.Button(self.root, text=str(cell.number) + " " * (4 - len(str(cell.number))), bg=Colors[cell.color_tkinter % len(Colors)])
                     b.grid(row=(k+1) * self.size + i, column=(k+1)*self.size + j + 2)
                     self.buttons.append(b)
 
